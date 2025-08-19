@@ -1,6 +1,6 @@
 # 🌐 Nelson Muquissi - Web Developer Portfolio
 
-![Portfolio Screenshot](assets/portfolio.png) <!-- Add your actual screenshot path -->
+![1755607465981](image/README/1755607465981.png)
 
 > Modern, responsive portfolio showcasing my skills, projects, and professional journey
 
