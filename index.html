@@ -193,10 +193,67 @@
         }
 
         @keyframes blink { 50% { opacity: 0; } }
+
+        /* Boot Screen */
+        #boot-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            color: var(--neon-blue);
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+
+        /* Matrix Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 2s;
+            pointer-events: none;
+        }
+
+        /* X-Ray Project Hover */
+        .xray-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 20, 40, 0.95);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease;
+            font-family: 'Fira Code', monospace;
+            font-size: 11px;
+            color: #00D2FF;
+            text-align: left;
+            padding: 2rem;
+            pointer-events: none;
+        }
+        .project-card:hover .xray-overlay {
+            opacity: 1;
+        }
     </style>
 </head>
 
-<body class="selection:bg-cyan-500/30">
+<body class="selection:bg-cyan-500/30 overflow-hidden" id="body">
+
+    <!-- Boot Sequence Screen -->
+    <div id="boot-screen">
+        <div id="boot-text" class="space-y-2"></div>
+    </div>
+
+    <!-- Matrix Background -->
+    <canvas id="matrix-canvas"></canvas>
 
     <!-- Custom Cursor -->
     <div id="custom-cursor">
@@ -506,37 +563,58 @@
             </div>
             <div class="max-w-7xl mx-auto px-6 mt-32 grid lg:grid-cols-2 gap-8">
                 <!-- BiEntrega Card -->
-                <div class="glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
-                    <div class="flex justify-between items-start mb-12">
-                        <i class="fa-solid fa-truck-fast text-5xl text-emerald-400"></i>
-                        <div
-                            class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
-                            BIENTREGA_SYNC</div>
+                <div class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-12">
+                            <i class="fa-solid fa-truck-fast text-5xl text-emerald-400"></i>
+                            <div class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                BIENTREGA_SYNC</div>
+                        </div>
+                        <h3 class="text-4xl font-bold mb-6 tracking-tighter">BiEntrega</h3>
+                        <p class="text-slate-500 leading-relaxed">Plataforma de logística digital desenvolvida para o mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência governamental.</p>
+                        <div class="mt-12 flex gap-4">
+                            <span class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
+                            <span class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
+                        </div>
                     </div>
-                    <h3 class="text-4xl font-bold mb-6 tracking-tighter">BiEntrega</h3>
-                    <p class="text-slate-500 leading-relaxed">Plataforma de logística digital desenvolvida para o mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência governamental.</p>
-                    <div class="mt-12 flex gap-4">
-                        <span
-                            class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
-                        <span
-                            class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">class</span> <span class="text-emerald-400">BiEntregaSync</span>(APIView):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400">""" Handles Gov Logistics """</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">def</span> <span class="text-blue-300">post</span>(self, request):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route = LogicCore.optimize(request.data)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery = Delivery.objects.create(**route)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> Response(status=201)
+                        </div>
                     </div>
                 </div>
                 <!-- Kacifo Card -->
-                <div class="glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
-                    <div class="flex justify-between items-start mb-12">
-                        <i class="fa-solid fa-vault text-5xl text-emerald-400"></i>
-                        <div
-                            class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
-                            PROJ: KACIFO</div>
+                <div class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-12">
+                            <i class="fa-solid fa-vault text-5xl text-emerald-400"></i>
+                            <div class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                PROJ: KACIFO</div>
+                        </div>
+                        <h3 class="text-4xl font-bold mb-6 tracking-tighter">Missão: Kacifo</h3>
+                        <p class="text-slate-500 leading-relaxed">A primeira rede de cacifos inteligentes de Angola. Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.</p>
+                        <div class="mt-8">
+                            <a href="https://github.com/NelsonMuquissi" target="_blank" class="inline-flex items-center gap-4 text-emerald-400 font-bold group">
+                                VER RELATÓRIO TÉCNICO <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
-                    <h3 class="text-4xl font-bold mb-6 tracking-tighter">Missão: Kacifo</h3>
-                    <p class="text-slate-500 leading-relaxed">A primeira rede de cacifos inteligentes de Angola. Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.</p>
-                    <div class="mt-8">
-                        <a href="https://github.com/NelsonMuquissi" target="_blank" class="inline-flex items-center gap-4 text-emerald-400 font-bold group">
-                            VER RELATÓRIO TÉCNICO <i
-                                class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
-                        </a>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">async def</span> <span class="text-emerald-400">unlock_locker</span>(locker_id, payload):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;auth = await verify_payment(payload.token)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">if</span> auth.is_valid():<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await IoT.trigger_relay(locker_id)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.success(<span class="text-yellow-300">f"Locker {locker_id} OPEN"</span>)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> <span class="text-purple-400">True</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -619,7 +697,7 @@
                     <h4 class="text-3xl font-bold mb-4">Currículo Evolutivo</h4>
                     <p class="text-slate-500 text-sm mb-10">Baixe o dossiê completo de competências técnicas e
                         trajetória profissional em formato PDF.</p>
-                    <a href="Nelson_Zangui_CV.pdf" download
+                    <a href="Nelson_Zangui_CV_Executive.pdf" download
                         class="block w-full py-6 glass border-2 border-cyan-400/30 font-black tracking-widest hover:bg-cyan-400 hover:text-black hover:border-cyan-400 transition-all uppercase">DOWNLOAD_DOSSIER.PDF</a>
                 </div>
                 <div class="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -641,6 +719,68 @@
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+
+        // --- Boot Sequence ---
+        const bootText = [
+            "INIT nelson_zangui.sys ... OK",
+            "LOADING MODULES ... [Django, Python, SQL, IoT] ... OK",
+            "ESTABLISHING DATABASE CONNECTION ... OK",
+            "CHECKING PRODUCT_MANAGEMENT_CORE ... EXCELLENT",
+            "AWARDS: 'TALENTO E REVELAÇÃO 2025' ... VERIFIED",
+            "RENDERING INTERFACE ...",
+            "ACCESS GRANTED."
+        ];
+        
+        let bootContainer = document.getElementById('boot-text');
+        let bootScreen = document.getElementById('boot-screen');
+        
+        async function runBoot() {
+            for (let i = 0; i < bootText.length; i++) {
+                let p = document.createElement('p');
+                bootContainer.appendChild(p);
+                for (let j = 0; j < bootText[i].length; j++) {
+                    p.innerHTML += bootText[i][j];
+                    await new Promise(r => setTimeout(r, 15)); // Typing speed
+                }
+                await new Promise(r => setTimeout(r, 200)); // Line delay
+            }
+            setTimeout(() => {
+                bootScreen.style.opacity = '0';
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    document.getElementById('body').classList.remove('overflow-hidden');
+                }, 500);
+            }, 500);
+        }
+        
+        window.onload = runBoot;
+
+        // --- Matrix Mode ---
+        const mCanvas = document.getElementById('matrix-canvas');
+        const ctx = mCanvas.getContext('2d');
+        mCanvas.width = window.innerWidth;
+        mCanvas.height = window.innerHeight;
+        
+        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14;
+        const columns = mCanvas.width / fontSize;
+        const drops = [];
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+        
+        let matrixInterval;
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
 
         // Custom Cursor Python >>>
         const cursor = document.getElementById('custom-cursor');
@@ -773,6 +913,17 @@
                     case 'clear':
                         content.innerHTML = '';
                         response.innerHTML = '';
+                        break;
+                    case 'matrix':
+                        if (mCanvas.style.opacity === '1') {
+                            mCanvas.style.opacity = '0';
+                            clearInterval(matrixInterval);
+                            response.innerHTML = 'Matrix mode: DEACTIVATED';
+                        } else {
+                            mCanvas.style.opacity = '1';
+                            matrixInterval = setInterval(drawMatrix, 33);
+                            response.innerHTML = 'Matrix mode: ACTIVATED. Wake up, Neo.';
+                        }
                         break;
                     case 'exit':
                         toggleTerminal();
