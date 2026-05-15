@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -165,11 +164,25 @@
         }
 
         @keyframes glitch-anim {
-            0% { transform: translate(0); }
-            25% { transform: translate(-2px, 2px); }
-            50% { transform: translate(2px, -2px); }
-            75% { transform: translate(-1px, -1px); }
-            100% { transform: translate(0); }
+            0% {
+                transform: translate(0);
+            }
+
+            25% {
+                transform: translate(-2px, 2px);
+            }
+
+            50% {
+                transform: translate(2px, -2px);
+            }
+
+            75% {
+                transform: translate(-1px, -1px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
         }
 
         /* Terminal Style */
@@ -177,7 +190,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 200;
             padding: 2rem;
             font-family: 'Fira Code', monospace;
@@ -192,7 +205,11 @@
             vertical-align: middle;
         }
 
-        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
 
         /* Boot Screen */
         #boot-screen {
@@ -239,6 +256,7 @@
             padding: 2rem;
             pointer-events: none;
         }
+
         .project-card:hover .xray-overlay {
             opacity: 1;
         }
@@ -272,7 +290,8 @@
     </div>
 
     <!-- System HUD -->
-    <div class="fixed bottom-10 left-10 z-[100] hidden lg:block mono text-[9px] text-cyan-400/60 space-y-2 glass p-5 rounded-2xl border-cyan-400/20 backdrop-blur-xl reveal-up">
+    <div
+        class="fixed bottom-10 left-10 z-[100] hidden lg:block mono text-[9px] text-cyan-400/60 space-y-2 glass p-5 rounded-2xl border-cyan-400/20 backdrop-blur-xl reveal-up">
         <div class="flex items-center gap-3 mb-4">
             <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
             <span class="font-bold tracking-widest text-emerald-500/80">CORE_ACTIVE</span>
@@ -286,9 +305,12 @@
     </div>
 
     <!-- Terminal Toggle -->
-    <button onclick="toggleTerminal()" class="fixed bottom-10 right-10 z-[100] glass p-4 rounded-full border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all group reveal-up">
+    <button onclick="toggleTerminal()"
+        class="fixed bottom-10 right-10 z-[100] glass p-4 rounded-full border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all group reveal-up">
         <i class="fa-solid fa-terminal text-xl"></i>
-        <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 glass px-3 py-1 rounded text-[10px] mono opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">OPEN_CONSOLE [T]</span>
+        <span
+            class="absolute right-full mr-4 top-1/2 -translate-y-1/2 glass px-3 py-1 rounded text-[10px] mono opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">OPEN_CONSOLE
+            [T]</span>
     </button>
 
     <!-- Terminal Overlay -->
@@ -296,7 +318,8 @@
         <div class="max-w-3xl mx-auto h-full flex flex-col">
             <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
                 <span class="mono text-cyan-400 text-xs tracking-widest">NELSON_OS v3.0.0</span>
-                <button onclick="toggleTerminal()" class="text-white/50 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <button onclick="toggleTerminal()" class="text-white/50 hover:text-white"><i
+                        class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div id="terminal-content" class="flex-1 overflow-y-auto mono text-sm space-y-4 text-slate-300">
                 <p class="text-cyan-400">Welcome to Nelson Zangui Systems.</p>
@@ -304,7 +327,9 @@
             </div>
             <div class="flex gap-4 items-center mt-6">
                 <span class="text-cyan-400 mono">>>></span>
-                <input type="text" id="terminal-input" class="bg-transparent border-none outline-none text-white mono flex-1" autofocus onkeydown="handleCommand(event)">
+                <input type="text" id="terminal-input"
+                    class="bg-transparent border-none outline-none text-white mono flex-1" autofocus
+                    onkeydown="handleCommand(event)">
                 <span class="terminal-cursor"></span>
             </div>
         </div>
@@ -342,47 +367,47 @@
         <div id="visual-architecture"
             class="absolute inset-0 opacity-0 bg-[radial-gradient(circle_at_center,_#0a1d37_0%,_transparent_70%)] flex items-center justify-center">
             <div class="grid grid-cols-10 gap-2 opacity-10">
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
-                
+
             </div>
         </div>
     </div>
@@ -391,18 +416,23 @@
     <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center glass border-b border-white/5">
         <div class="mono text-nowrap font-bold text-cyan-400 text-shadow-glow">nelson_zangui.sys</div>
         <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase">
-            <a href="index.html#origin" class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">01.
+            <a href="index.html#origin"
+                class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">01.
                 ORIGEM</a>
-            <a href="index.html#evolution" class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">02.
+            <a href="index.html#evolution"
+                class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">02.
                 EVOLUÇÃO</a>
-            <a href="index.html#architecture" class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">03.
+            <a href="index.html#architecture"
+                class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">03.
                 ARQUITETURA</a>
-            <a href="index.html#connection" class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">04.
+            <a href="index.html#connection"
+                class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">04.
                 CONEXÃO</a>
-            <a href="index.html#intelligence" class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">05.
+            <a href="index.html#intelligence"
+                class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">05.
                 INTELIGÊNCIA</a>
         </div>
-        <a href="index.html#"
+        <a href="https://github.com/NelsonMuquissi"
             class="px-5 py-2 glass border border-cyan-400/50 text-cyan-400 text-[10px] font-bold hover:bg-cyan-400 hover:text-black transition-all tracking-widest uppercase">ACCESS_ARCHIVE</a>
     </nav>
 
@@ -558,62 +588,86 @@
                     Global_Deployment /</p>
                 <h2 class="text-7xl lg:text-9xl font-black reveal-up tracking-tighter">CONEXÃO</h2>
                 <p class="text-2xl text-slate-400 font-light max-w-2xl mx-auto reveal-up">
-                    Unindo **Logística, Tecnologia e Inovação**. Liderando projetos que transformam o ecossistema digital em Angola através de soluções inteligentes.
+                    Unindo Logística, Tecnologia e Inovação. Liderando projetos que transformam o ecossistema digital em
+                    Angola através de soluções inteligentes.
                 </p>
             </div>
             <div class="max-w-7xl mx-auto px-6 mt-32 grid lg:grid-cols-2 gap-8">
                 <!-- BiEntrega Card -->
-                <div class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                <div
+                    class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-12">
                             <i class="fa-solid fa-truck-fast text-5xl text-emerald-400"></i>
-                            <div class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
                                 BIENTREGA_SYNC</div>
                         </div>
                         <h3 class="text-4xl font-bold mb-6 tracking-tighter">BiEntrega</h3>
-                        <p class="text-slate-500 leading-relaxed">Plataforma de logística digital desenvolvida para o mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência governamental.</p>
+                        <p class="text-slate-500 leading-relaxed">Plataforma de logística digital desenvolvida para o
+                            mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência
+                            governamental.</p>
                         <div class="mt-12 flex gap-4">
-                            <span class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
-                            <span class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
+                            <span
+                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
+                            <span
+                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
+                            <span
+                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold"><a
+                                    href="https://bientrega.com/" target="_blank">Acessar</a></span>
                         </div>
                     </div>
                     <!-- X-Ray Snippet -->
                     <div class="xray-overlay">
                         <div>
-                            <span class="text-pink-400">class</span> <span class="text-emerald-400">BiEntregaSync</span>(APIView):<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400">""" Handles Gov Logistics """</span><br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">def</span> <span class="text-blue-300">post</span>(self, request):<br>
+                            <span class="text-pink-400">class</span> <span
+                                class="text-emerald-400">BiEntregaSync</span>(APIView):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400">""" Handles Gov Logistics
+                                """</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">def</span> <span
+                                class="text-blue-300">post</span>(self, request):<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route = LogicCore.optimize(request.data)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery = Delivery.objects.create(**route)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> Response(status=201)
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery =
+                            Delivery.objects.create(**route)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span>
+                            Response(status=201)
                         </div>
                     </div>
                 </div>
                 <!-- Kacifo Card -->
-                <div class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                <div
+                    class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-12">
                             <i class="fa-solid fa-vault text-5xl text-emerald-400"></i>
-                            <div class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
                                 PROJ: KACIFO</div>
                         </div>
                         <h3 class="text-4xl font-bold mb-6 tracking-tighter">Missão: Kacifo</h3>
-                        <p class="text-slate-500 leading-relaxed">A primeira rede de cacifos inteligentes de Angola. Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.</p>
+                        <p class="text-slate-500 leading-relaxed">A primeira rede de cacifos inteligentes de Angola.
+                            Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.
+                        </p>
                         <div class="mt-8">
-                            <a href="https://github.com/NelsonMuquissi" target="_blank" class="inline-flex items-center gap-4 text-emerald-400 font-bold group">
-                                VER RELATÓRIO TÉCNICO <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            <a href="https://kacifos.com/" target="_blank"
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group">
+                                VER RELATÓRIO TÉCNICO <i
+                                    class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                             </a>
                         </div>
                     </div>
                     <!-- X-Ray Snippet -->
                     <div class="xray-overlay">
                         <div>
-                            <span class="text-pink-400">async def</span> <span class="text-emerald-400">unlock_locker</span>(locker_id, payload):<br>
+                            <span class="text-pink-400">async def</span> <span
+                                class="text-emerald-400">unlock_locker</span>(locker_id, payload):<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;auth = await verify_payment(payload.token)<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">if</span> auth.is_valid():<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await IoT.trigger_relay(locker_id)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.success(<span class="text-yellow-300">f"Locker {locker_id} OPEN"</span>)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> <span class="text-purple-400">True</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.success(<span
+                                class="text-yellow-300">f"Locker {locker_id} OPEN"</span>)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span>
+                            <span class="text-purple-400">True</span>
                         </div>
                     </div>
                 </div>
@@ -627,11 +681,13 @@
                 <div class="space-y-4">
                     <p class="mono text-cyan-400 text-xs font-bold tracking-[0.8em] reveal-up uppercase">/
                         Excellence_Award /</p>
-                    <h2 class="text-8xl lg:text-[10rem] font-black reveal-up tracking-tighter leading-none italic uppercase">
+                    <h2
+                        class="text-8xl lg:text-[10rem] font-black reveal-up tracking-tighter leading-none italic uppercase">
                         REVELAÇÃO</h2>
                 </div>
                 <p class="text-3xl lg:text-4xl text-slate-300 font-extralight leading-snug reveal-up mx-auto max-w-3xl">
-                    Premiado como **"Talento e Revelação 2025"** pela Tupuca. Um reconhecimento ao compromisso com a excelência técnica e impacto estratégico.
+                    Premiado como "Talento e Revelação 2025" pela Tupuca. Um reconhecimento ao compromisso com a
+                    excelência técnica e impacto estratégico.
                 </p>
                 <div class="pt-16 reveal-up">
                     <a href="index.html#contact" class="group relative inline-flex items-center justify-center">
@@ -730,10 +786,10 @@
             "RENDERING INTERFACE ...",
             "ACCESS GRANTED."
         ];
-        
+
         let bootContainer = document.getElementById('boot-text');
         let bootScreen = document.getElementById('boot-screen');
-        
+
         async function runBoot() {
             for (let i = 0; i < bootText.length; i++) {
                 let p = document.createElement('p');
@@ -752,7 +808,7 @@
                 }, 500);
             }, 500);
         }
-        
+
         window.onload = runBoot;
 
         // --- Matrix Mode ---
@@ -760,24 +816,24 @@
         const ctx = mCanvas.getContext('2d');
         mCanvas.width = window.innerWidth;
         mCanvas.height = window.innerHeight;
-        
+
         const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const fontSize = 14;
         const columns = mCanvas.width / fontSize;
         const drops = [];
-        for(let x = 0; x < columns; x++) drops[x] = 1;
-        
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
         let matrixInterval;
         function drawMatrix() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, mCanvas.width, mCanvas.height);
             ctx.fillStyle = '#0F0';
             ctx.font = fontSize + 'px monospace';
-            
-            for(let i = 0; i < drops.length; i++) {
+
+            for (let i = 0; i < drops.length; i++) {
                 const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if(drops[i] * fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                if (drops[i] * fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             }
         }
@@ -887,7 +943,7 @@
                 const input = e.target;
                 const cmd = input.value.toLowerCase().trim();
                 const content = document.getElementById('terminal-content');
-                
+
                 // Add line
                 const line = document.createElement('p');
                 line.innerHTML = `<span class="text-cyan-400">>>></span> ${cmd}`;
@@ -896,8 +952,8 @@
                 // Response
                 const response = document.createElement('p');
                 response.classList.add('text-slate-400', 'ml-4');
-                
-                switch(cmd) {
+
+                switch (cmd) {
                     case 'help':
                         response.innerHTML = 'Available: <span class="text-white">skills, awards, contact, clear, exit</span>';
                         break;
@@ -931,7 +987,7 @@
                     default:
                         response.innerHTML = `Command not found: ${cmd}. Type 'help'.`;
                 }
-                
+
                 content.appendChild(response);
                 input.value = '';
                 content.scrollTop = content.scrollHeight;
