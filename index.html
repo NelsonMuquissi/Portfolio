@@ -270,8 +270,11 @@
         <div id="boot-text" class="space-y-2"></div>
     </div>
 
+    <!-- Particles Background -->
+    <canvas id="particles-canvas" class="fixed top-0 left-0 w-full h-full z-[-3] opacity-30 pointer-events-none"></canvas>
+
     <!-- Matrix Background -->
-    <canvas id="matrix-canvas"></canvas>
+    <canvas id="matrix-canvas" class="fixed top-0 left-0 w-full h-full z-[-2] opacity-0 pointer-events-none transition-opacity duration-1000"></canvas>
 
     <!-- Custom Cursor -->
     <div id="custom-cursor">
@@ -601,41 +604,39 @@
         </section>
 
         <!-- Stage 4: CONEXÃO -->
-        <section id="connection" class="journey-section overflow-hidden">
+        <section id="connection" class="journey-section overflow-hidden !justify-start pt-16 lg:pt-20">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#051d10_0%,_transparent_70%)] opacity-30">
             </div>
-            <div class="max-w-6xl mx-auto px-6 text-center space-y-10 relative">
+            <div class="max-w-6xl mx-auto px-6 text-center space-y-4 relative">
                 <p class="mono text-emerald-400 text-xs font-bold tracking-[0.5em] reveal-up uppercase">/
                     Global_Deployment /</p>
-                <h2 class="text-7xl lg:text-9xl font-black reveal-up tracking-tighter">CONEXÃO</h2>
-                <p class="text-2xl text-slate-400 font-light max-w-2xl mx-auto reveal-up">
-                    Unindo Logística, Tecnologia e Inovação. Liderando projetos que transformam o ecossistema digital em
-                    Angola através de soluções inteligentes.
+                <h2 class="text-5xl lg:text-7xl font-black reveal-up tracking-tighter">CONEXÃO</h2>
+                <p class="text-lg lg:text-xl text-slate-400 font-light max-w-2xl mx-auto reveal-up">
+                    Unindo Logística, Tecnologia e Inovação. Liderando projetos que transformam o ecossistema digital em Angola através de soluções inteligentes.
                 </p>
             </div>
-            <div class="max-w-7xl mx-auto px-6 mt-32 grid lg:grid-cols-2 gap-8">
+            <div class="projects-wrapper w-full overflow-hidden mt-6 pb-8">
+                <div class="projects-container flex flex-nowrap gap-6 px-6 w-max items-center">
                 <!-- BiEntrega Card -->
                 <div
-                    class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
                     <div class="relative z-10">
-                        <div class="flex justify-between items-start mb-12">
-                            <i class="fa-solid fa-truck-fast text-5xl text-emerald-400"></i>
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-truck-fast text-4xl text-emerald-400"></i>
                             <div
                                 class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
                                 BIENTREGA_SYNC</div>
                         </div>
-                        <h3 class="text-4xl font-bold mb-6 tracking-tighter">BiEntrega</h3>
-                        <p class="text-slate-500 leading-relaxed">Plataforma de logística digital desenvolvida para o
-                            mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência
-                            governamental.</p>
-                        <div class="mt-12 flex gap-4">
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">BiEntrega</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">Plataforma de logística digital desenvolvida para o mercado angolano em parceria com o Ministério da Justiça. Foco em eficiência e transparência governamental.</p>
+                        <div class="mt-8 flex gap-4">
                             <span
-                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
+                                class="px-3 py-1.5 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">DJANGO</span>
                             <span
-                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
+                                class="px-3 py-1.5 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold">LOGISTICS</span>
                             <span
-                                class="px-4 py-2 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold"><a
+                                class="px-3 py-1.5 bg-emerald-950/30 text-emerald-400 mono text-[10px] rounded-full font-bold"><a
                                     href="https://bientrega.com/" target="_blank">Acessar</a></span>
                         </div>
                     </div>
@@ -644,35 +645,30 @@
                         <div>
                             <span class="text-pink-400">class</span> <span
                                 class="text-emerald-400">BiEntregaSync</span>(APIView):<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400">""" Handles Gov Logistics
-                                """</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-400">""" Handles Gov Logistics """</span><br>
                             &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">def</span> <span
                                 class="text-blue-300">post</span>(self, request):<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route = LogicCore.optimize(request.data)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery =
-                            Delivery.objects.create(**route)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span>
-                            Response(status=201)
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery = Delivery.objects.create(**route)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> Response(status=201)
                         </div>
                     </div>
                 </div>
                 <!-- Kacifo Card -->
                 <div
-                    class="project-card relative overflow-hidden glass p-12 rounded-[3rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
                     <div class="relative z-10">
-                        <div class="flex justify-between items-start mb-12">
-                            <i class="fa-solid fa-vault text-5xl text-emerald-400"></i>
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-vault text-4xl text-emerald-400"></i>
                             <div
                                 class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
                                 PROJ: KACIFO</div>
                         </div>
-                        <h3 class="text-4xl font-bold mb-6 tracking-tighter">Missão: Kacifo</h3>
-                        <p class="text-slate-500 leading-relaxed">A primeira rede de cacifos inteligentes de Angola.
-                            Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.
-                        </p>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">Missão: Kacifo</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">A primeira rede de cacifos inteligentes de Angola. Liderança técnica e arquitetural de um ecossistema IoT integrado a gateways de pagamento.</p>
                         <div class="mt-8">
                             <a href="https://kacifos.com/" target="_blank"
-                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group">
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group text-sm">
                                 VER RELATÓRIO TÉCNICO <i
                                     class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                             </a>
@@ -688,8 +684,133 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await IoT.trigger_relay(locker_id)<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.success(<span
                                 class="text-yellow-300">f"Locker {locker_id} OPEN"</span>)<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span>
-                            <span class="text-purple-400">True</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> <span class="text-purple-400">True</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- HackerScan-Pro Card -->
+                <div
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-shield-halved text-4xl text-emerald-400"></i>
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                PROJ: HACKERSCAN</div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">HackerScan-Pro</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">Plataforma SaaS de análise automatizada de vulnerabilidades web com ferramentas de segurança.</p>
+                        <div class="mt-8">
+                            <a href="https://github.com/NelsonMuquissi/HackerScan-Pro" target="_blank"
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group text-sm">
+                                ACESSAR REPOSITÓRIO <i
+                                    class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">class</span> <span
+                                class="text-emerald-400">SecurityScanner</span>(Task):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">def</span> <span
+                                class="text-blue-300">run_scan</span>(self, target):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vulns = Engine.analyze(target)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> Report(vulns)
+                        </div>
+                    </div>
+                </div>
+                <!-- EdukAngola Card -->
+                <div
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-100">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-graduation-cap text-4xl text-emerald-400"></i>
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                PROJ: EDUKANGOLA</div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">EdukAngola</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">O EdukAngola é um portal educativo angolano que funciona como um agregador de cursos, centros de formação e recursos para o desenvolvimento de carreira.</p>
+                        <div class="mt-8">
+                            <a href="https://www.edukangola.com/" target="_blank"
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group text-sm">
+                                ACESSAR PORTAL <i
+                                    class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">const</span> <span
+                                class="text-blue-300">getAggregatedCourses</span> = <span class="text-pink-400">async</span> () => {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">const</span> courses = <span class="text-pink-400">await</span> DB.fetchCourses();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> courses.filter(c => c.active);<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- DigiVoucher Card -->
+                <div
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-ticket text-4xl text-emerald-400"></i>
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                PROJ: DIGIVOUCHER</div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">DigiVoucher</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">Plataforma digital para a emissão e gestão de vales-presente e vouchers promocionais, permitindo a criação de cartões virtuais personalizados para campanhas de fidelidade.</p>
+                        <div class="mt-8">
+                            <a href="https://www.cartaodigivoucher.io" target="_blank"
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group text-sm">
+                                ACESSAR PLATAFORMA <i
+                                    class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">async def</span> <span
+                                class="text-emerald-400">generate_voucher</span>(campaign_id):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;code = Crypto.generate_secure_code()<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;voucher = Voucher.create(code=code, campaign=campaign_id)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">return</span> voucher
+                        </div>
+                    </div>
+                </div>
+                <!-- MAV Africa Card -->
+                <div
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-300">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fa-solid fa-tractor text-4xl text-emerald-400"></i>
+                            <div
+                                class="px-4 py-1 glass mono text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
+                                PROJ: MAV_AFRICA</div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4 tracking-tighter">MAV - Africa</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm lg:text-base">Plataforma que permite alugar, comprar ou contratar equipamentos industriais com operadores certificados, logística integrada, pagamentos seguros e SLA monitorado.</p>
+                        <div class="mt-8">
+                            <a href="https://mav.africa/" target="_blank"
+                                class="inline-flex items-center gap-4 text-emerald-400 font-bold group text-sm">
+                                ACESSAR MAV AFRICA <i
+                                    class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- X-Ray Snippet -->
+                    <div class="xray-overlay">
+                        <div>
+                            <span class="text-pink-400">def</span> <span
+                                class="text-blue-300">process_rental</span>(equipment_id, user_id):<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;availability = Inventory.check(equipment_id)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-pink-400">if</span> availability:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Payment.process(user_id)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logistics.dispatch(equipment_id)
                         </div>
                     </div>
                 </div>
@@ -977,13 +1098,19 @@
 
                 switch (cmd) {
                     case 'help':
-                        response.innerHTML = 'Available: <span class="text-white">skills, awards, contact, clear, exit</span>';
+                        response.innerHTML = 'Available: <span class="text-white">ls, about, skills, awards, contact, clear, matrix, exit</span>';
+                        break;
+                    case 'ls':
+                        response.innerHTML = 'Directory listing:<br><span class="text-emerald-400">drwxr-xr-x</span> BiEntrega<br><span class="text-emerald-400">drwxr-xr-x</span> Kacifo<br><span class="text-emerald-400">drwxr-xr-x</span> HackerScan-Pro<br><span class="text-emerald-400">drwxr-xr-x</span> EdukAngola<br><span class="text-emerald-400">drwxr-xr-x</span> DigiVoucher<br><span class="text-emerald-400">drwxr-xr-x</span> MAV_Africa';
+                        break;
+                    case 'about':
+                        response.innerHTML = 'Nelson Zangui. Architect, Fullstack Engineer. Building the future of the digital ecosystem in Angola with High-Level Logic and Excellence.';
                         break;
                     case 'skills':
-                        response.innerHTML = 'Stack: Python, Django, SQL, Product Management, Leadership.';
+                        response.innerHTML = 'Stack: Python, Django, SQL, JavaScript, Next, Docker, AWS, Power BI, Clean Code.';
                         break;
                     case 'awards':
-                        response.innerHTML = '2025: Talento e Revelação @ Tupuca';
+                        response.innerHTML = '2025: Talento e Revelação @ Tupuca - Recognized for strategic impact and technical excellence.';
                         break;
                     case 'contact':
                         response.innerHTML = 'Email: emelsonmuquissi@gmail.com | Phone: +244 934 588 231';
@@ -1014,6 +1141,154 @@
                 input.value = '';
                 content.scrollTop = content.scrollHeight;
             }
+        }
+        // Horizontal Scroll for Projects
+        let connectionSection = document.querySelector("#connection");
+        let projectContainer = document.querySelector(".projects-container");
+        if (projectContainer && connectionSection) {
+            gsap.to(projectContainer, {
+                x: () => -(projectContainer.scrollWidth - window.innerWidth + 48) + "px",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: connectionSection,
+                    start: "top top",
+                    pin: true,
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                    end: () => "+=" + projectContainer.scrollWidth
+                }
+            });
+        }
+
+        // 3D Tilt Effect for Project Cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                gsap.to(card, {
+                    rotationX: rotateX,
+                    rotationY: rotateY,
+                    transformPerspective: 1000,
+                    ease: 'power1.out',
+                    duration: 0.5
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationX: 0,
+                    rotationY: 0,
+                    ease: 'power3.out',
+                    duration: 0.5
+                });
+            });
+        });
+
+        // --- Particles Network ---
+        const pCanvas = document.getElementById('particles-canvas');
+        if(pCanvas) {
+            const pCtx = pCanvas.getContext('2d');
+            let pWidth, pHeight;
+            let particles = [];
+            const mouse = { x: null, y: null, radius: 150 };
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            function resizeParticles() {
+                pWidth = pCanvas.width = window.innerWidth;
+                pHeight = pCanvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeParticles);
+            resizeParticles();
+
+            class Particle {
+                constructor(x, y, dx, dy, size) {
+                    this.x = x;
+                    this.y = y;
+                    this.dx = dx;
+                    this.dy = dy;
+                    this.size = size;
+                }
+                draw() {
+                    pCtx.beginPath();
+                    pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    pCtx.fillStyle = 'rgba(0, 210, 255, 0.5)';
+                    pCtx.fill();
+                }
+                update() {
+                    if (this.x > pWidth || this.x < 0) this.dx = -this.dx;
+                    if (this.y > pHeight || this.y < 0) this.dy = -this.dy;
+                    this.x += this.dx;
+                    this.y += this.dy;
+
+                    if (mouse.x != null && mouse.y != null) {
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < mouse.radius) {
+                            const forceDirectionX = dx / distance;
+                            const forceDirectionY = dy / distance;
+                            const force = (mouse.radius - distance) / mouse.radius;
+                            this.x -= forceDirectionX * force * 5;
+                            this.y -= forceDirectionY * force * 5;
+                        }
+                    }
+                    this.draw();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                let numParticles = (pWidth * pHeight) / 12000;
+                for (let i = 0; i < numParticles; i++) {
+                    let size = Math.random() * 2 + 1;
+                    let x = Math.random() * (pWidth - size * 2);
+                    let y = Math.random() * (pHeight - size * 2);
+                    let dx = (Math.random() - 0.5) * 1;
+                    let dy = (Math.random() - 0.5) * 1;
+                    particles.push(new Particle(x, y, dx, dy, size));
+                }
+            }
+
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                pCtx.clearRect(0, 0, pWidth, pHeight);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+                connectParticles();
+            }
+
+            function connectParticles() {
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a; b < particles.length; b++) {
+                        let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+                            + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                        if (distance < (pWidth/7) * (pHeight/7)) {
+                            let opacityValue = 1 - (distance / 20000);
+                            pCtx.strokeStyle = 'rgba(0, 210, 255,' + opacityValue + ')';
+                            pCtx.lineWidth = 1;
+                            pCtx.beginPath();
+                            pCtx.moveTo(particles[a].x, particles[a].y);
+                            pCtx.lineTo(particles[b].x, particles[b].y);
+                            pCtx.stroke();
+                        }
+                    }
+                }
+            }
+            initParticles();
+            animateParticles();
         }
     </script>
 </body>
