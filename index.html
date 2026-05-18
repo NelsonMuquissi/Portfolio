@@ -480,19 +480,21 @@
             class="px-3 py-1.5 md:px-5 md:py-2 glass border border-cyan-400/50 text-cyan-400 text-[8px] md:text-[10px] font-bold hover:bg-cyan-400 hover:text-black transition-all tracking-widest uppercase">ACCESS_ARCHIVE</a>
     </nav>
 
-    <main>
-        <!-- Stage 1: ORIGEM -->
-        <section id="origin" class="journey-section">
-            <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-                <div class="space-y-10">
-                    <div
-                        class="mono text-cyan-400/50 flex items-center gap-4 text-xs font-bold tracking-widest reveal-up">
-                        <span class="w-12 h-[1px] bg-cyan-400/30"></span>
-                        / S01_ALGORITHM_BIRTH /
-                    </div>
-                    <h1 class="text-5xl md:text-7xl lg:text-9xl font-black reveal-up tracking-tighter leading-none glitch-text">
-                        ORIGEM
-                    </h1>
+    <!-- Main site wrapper to prevent outer body horizontal scroll leaks on mobile -->
+    <div class="relative w-full overflow-x-hidden">
+        <main>
+            <!-- Stage 1: ORIGEM -->
+            <section id="origin" class="journey-section">
+                <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="space-y-10">
+                        <div
+                            class="mono text-cyan-400/50 flex items-center gap-4 text-xs font-bold tracking-widest reveal-up">
+                            <span class="w-12 h-[1px] bg-cyan-400/30"></span>
+                            / S01_ALGORITHM_BIRTH /
+                        </div>
+                        <h1 class="text-4xl xs:text-5xl md:text-7xl lg:text-9xl font-black reveal-up tracking-tighter leading-none glitch-text">
+                            ORIGEM
+                        </h1>
                     <p class="text-2xl text-slate-400 font-light leading-relaxed reveal-up max-w-lg">
                         “Tudo começou com algoritmos simples, lógica pura e uma curiosidade infinita.”
                     </p>
@@ -530,7 +532,7 @@
                 <div class="text-center space-y-6 mb-24">
                     <p class="mono text-purple-400 text-xs font-bold tracking-[0.5em] reveal-up uppercase">/
                         High_Level_Logic /</p>
-                    <h2 class="text-5xl md:text-7xl lg:text-9xl font-black reveal-up tracking-tighter glitch-text">EVOLUÇÃO</h2>
+                    <h2 class="text-4xl xs:text-5xl md:text-7xl lg:text-9xl font-black reveal-up tracking-tighter glitch-text">EVOLUÇÃO</h2>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6">
                     <!-- OOP Card -->
@@ -580,7 +582,7 @@
                     <div class="space-y-4">
                         <p class="mono text-cyan-400 text-xs font-bold tracking-[0.4em] reveal-up uppercase">/
                             Scaling_Systems /</p>
-                        <h2 class="text-5xl md:text-7xl lg:text-8xl font-black reveal-up tracking-tighter leading-none">ARQUITETURA
+                        <h2 class="text-[9.5vw] xs:text-4xl md:text-7xl lg:text-8xl font-black reveal-up tracking-tighter leading-none">ARQUITETURA
                         </h2>
                     </div>
                     <p class="text-xl text-slate-400 font-light leading-relaxed reveal-up">
@@ -857,6 +859,11 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Mobile Carousel Pagination Indicators (Hidden on Desktop) -->
+        <div class="flex lg:hidden justify-center items-center gap-3 mt-4" id="carousel-dots">
+            <!-- Populated dynamically via JavaScript -->
+        </div>
     </section>
 
         <!-- Stage 5: INTELIGÊNCIA -->
@@ -867,7 +874,7 @@
                     <p class="mono text-cyan-400 text-xs font-bold tracking-[0.8em] reveal-up uppercase">/
                         Excellence_Award /</p>
                     <h2
-                        class="text-5xl md:text-8xl lg:text-[10rem] font-black reveal-up tracking-tighter leading-none italic uppercase">
+                        class="text-[9.5vw] xs:text-5xl md:text-8xl lg:text-[10rem] font-black reveal-up tracking-tighter leading-none italic uppercase">
                         REVELAÇÃO</h2>
                 </div>
                 <p class="text-3xl lg:text-4xl text-slate-300 font-extralight leading-snug reveal-up mx-auto max-w-3xl">
@@ -957,6 +964,7 @@
             </div>
         </div>
     </footer>
+    </div> <!-- Closes .relative.w-full.overflow-x-hidden wrapper -->
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -1205,6 +1213,133 @@
                     }
                 });
             }
+        });
+
+        // --- Mobile Dynamic Carousel & Touch Interactions ---
+        const projectsWrapper = document.querySelector('.projects-wrapper');
+        const projectCards = document.querySelectorAll('.project-card');
+        const mobileDotsContainer = document.getElementById('carousel-dots');
+
+        // Dynamically build indicator dots on mobile
+        if (mobileDotsContainer && projectCards.length > 0) {
+            mobileDotsContainer.innerHTML = '';
+            projectCards.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full bg-white/20 transition-all duration-300 ${idx === 0 ? 'bg-emerald-400 w-6' : ''}`;
+                dot.setAttribute('aria-label', `Project ${idx + 1}`);
+                dot.onclick = () => {
+                    const card = projectCards[idx];
+                    projectsWrapper.scrollTo({
+                        left: card.offsetLeft - (projectsWrapper.clientWidth - card.clientWidth) / 2,
+                        behavior: 'smooth'
+                    });
+                };
+                mobileDotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateActiveMobileCard() {
+            if (window.innerWidth >= 1024) {
+                // Reset card scale and effects on desktop to let CSS hover work naturally
+                projectCards.forEach(card => {
+                    card.style.transform = '';
+                    card.style.opacity = '';
+                    card.style.borderColor = '';
+                    card.style.boxShadow = '';
+                });
+                return;
+            }
+
+            const wrapperRect = projectsWrapper.getBoundingClientRect();
+            const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+
+            let activeIndex = 0;
+            let minDistance = Infinity;
+
+            projectCards.forEach((card, index) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenter = cardRect.left + cardRect.width / 2;
+
+                const distance = Math.abs(wrapperCenter - cardCenter);
+                const factor = Math.max(0, 1 - distance / (wrapperRect.width * 0.6));
+                const scale = 0.92 + (0.08 * factor);
+                const opacity = 0.45 + (0.55 * factor);
+
+                card.style.transform = `scale(${scale})`;
+                card.style.opacity = opacity;
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeIndex = index;
+                }
+
+                // Apply active neon border & glow when card is centered
+                if (factor > 0.85) {
+                    card.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+                    card.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.25)';
+                } else {
+                    card.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                    card.style.boxShadow = 'none';
+                }
+            });
+
+            // Update paginator dots
+            if (mobileDotsContainer) {
+                const dots = mobileDotsContainer.querySelectorAll('button');
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.className = 'w-6 h-2 rounded-full bg-emerald-400 transition-all duration-300';
+                    } else {
+                        dot.className = 'w-2 h-2 rounded-full bg-white/20 transition-all duration-300';
+                    }
+                });
+            }
+        }
+
+        if (projectsWrapper) {
+            projectsWrapper.addEventListener('scroll', updateActiveMobileCard);
+            window.addEventListener('resize', updateActiveMobileCard);
+            // Run initial check
+            setTimeout(updateActiveMobileCard, 100);
+        }
+
+        // Tap Gesture: Toggle X-Ray code overlay on touch devices
+        projectCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (window.innerWidth >= 1024) return;
+                
+                // Allow links/buttons clicks inside the card to proceed normally
+                if (e.target.closest('a') || e.target.closest('button')) return;
+
+                const overlay = card.querySelector('.xray-overlay');
+                const isActivated = card.classList.contains('xray-active');
+
+                // Close all other active overlays first
+                projectCards.forEach(c => {
+                    if (c !== card) {
+                        c.classList.remove('xray-active');
+                        const otherOverlay = c.querySelector('.xray-overlay');
+                        if (otherOverlay) {
+                            otherOverlay.style.opacity = '0';
+                            otherOverlay.style.pointerEvents = 'none';
+                        }
+                    }
+                });
+
+                if (isActivated) {
+                    card.classList.remove('xray-active');
+                    if (overlay) {
+                        overlay.style.opacity = '0';
+                        overlay.style.pointerEvents = 'none';
+                    }
+                } else {
+                    card.classList.add('xray-active');
+                    if (overlay) {
+                        overlay.style.opacity = '1';
+                        overlay.style.pointerEvents = 'auto';
+                    }
+                }
+            });
         });
 
         // 3D Tilt Effect for Project Cards
