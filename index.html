@@ -19,6 +19,18 @@
             --deep-black: #050505;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--deep-black);
@@ -26,6 +38,15 @@
             overflow-x: hidden;
             cursor: none;
             /* Custom cursor */
+        }
+
+        @media (max-width: 1024px) {
+            #custom-cursor {
+                display: none !important;
+            }
+            body {
+                cursor: auto !important;
+            }
         }
 
         .mono {
@@ -78,11 +99,17 @@
         /* Narrative Sections */
         .journey-section {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             position: relative;
+        }
+        @media (min-width: 768px) {
+            .journey-section {
+                padding: 4rem 2rem;
+            }
         }
 
         .section-title {
@@ -382,7 +409,7 @@
 
         <!-- Stage 3 Visual: Architecture -->
         <div id="visual-architecture"
-            class="absolute inset-0 opacity-0 bg-[radial-gradient(circle_at_center,_#0a1d37_0%,_transparent_70%)] flex items-center justify-center">
+            class="absolute inset-0 opacity-0 bg-[radial-gradient(circle_at_center,_#0a1d37_0%,_transparent_70%)] flex items-center justify-center overflow-hidden">
             <div class="grid grid-cols-10 gap-2 opacity-10">
 
                 <div class="w-12 h-40 bg-cyan-500/20 rounded-t-lg"></div>
@@ -430,8 +457,8 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center glass border-b border-white/5">
-        <div class="mono text-nowrap font-bold text-cyan-400 text-shadow-glow">nelson_zangui.sys</div>
+    <nav class="fixed top-0 inset-x-0 z-50 p-4 md:p-6 flex justify-between items-center glass border-b border-white/5">
+        <div class="mono text-nowrap font-bold text-cyan-400 text-shadow-glow text-sm md:text-base">nelson_zangui.sys</div>
         <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase">
             <a href="index.html#origin"
                 class="nav-link hover:text-cyan-400 transition-all opacity-50 hover:opacity-100">01.
@@ -450,7 +477,7 @@
                 INTELIGÊNCIA</a>
         </div>
         <a href="https://github.com/NelsonMuquissi"
-            class="px-5 py-2 glass border border-cyan-400/50 text-cyan-400 text-[10px] font-bold hover:bg-cyan-400 hover:text-black transition-all tracking-widest uppercase">ACCESS_ARCHIVE</a>
+            class="px-3 py-1.5 md:px-5 md:py-2 glass border border-cyan-400/50 text-cyan-400 text-[8px] md:text-[10px] font-bold hover:bg-cyan-400 hover:text-black transition-all tracking-widest uppercase">ACCESS_ARCHIVE</a>
     </nav>
 
     <main>
@@ -483,7 +510,7 @@
                 <div class="relative reveal-up">
                     <div class="absolute inset-0 bg-cyan-500/10 blur-[100px] rounded-full"></div>
                     <div
-                        class="glass p-12 rounded-[3rem] border-cyan-400/20 transform -rotate-3 hover:rotate-0 transition-transform duration-700">
+                        class="glass p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] border-cyan-400/20 transform -rotate-3 hover:rotate-0 transition-transform duration-700">
                         <div class="mono text-cyan-400/80 space-y-3">
                             <p class="text-pink-400">def <span class="text-cyan-400">dream</span>():</p>
                             <p class="ml-6">logic = <span class="text-purple-400">True</span></p>
@@ -630,11 +657,11 @@
                     Unindo Logística, Tecnologia e Inovação. Liderando projetos que transformam o ecossistema digital em Angola através de soluções inteligentes.
                 </p>
             </div>
-            <div class="projects-wrapper w-full overflow-x-auto lg:overflow-hidden mt-6 pb-8 hide-scrollbar snap-x snap-mandatory">
-                <div class="projects-container flex flex-nowrap gap-6 px-6 w-max items-center">
+            <div class="projects-wrapper w-full overflow-x-auto lg:overflow-hidden hide-scrollbar mt-6 pb-8 snap-x snap-mandatory scroll-smooth">
+                <div class="projects-container flex flex-nowrap gap-6 px-6 lg:px-12 w-max items-center">
                 <!-- BiEntrega Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-truck-fast text-4xl text-emerald-400"></i>
@@ -670,7 +697,7 @@
                 </div>
                 <!-- Kacifo Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-vault text-4xl text-emerald-400"></i>
@@ -704,7 +731,7 @@
                 </div>
                 <!-- HackerScan-Pro Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-shield-halved text-4xl text-emerald-400"></i>
@@ -736,7 +763,7 @@
                 </div>
                 <!-- EdukAngola Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-100">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-100">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-graduation-cap text-4xl text-emerald-400"></i>
@@ -767,7 +794,7 @@
                 </div>
                 <!-- DigiVoucher Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-200">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-ticket text-4xl text-emerald-400"></i>
@@ -798,7 +825,7 @@
                 </div>
                 <!-- MAV Africa Card -->
                 <div
-                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-8 lg:p-10 rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-300">
+                    class="project-card w-[85vw] lg:w-[45vw] shrink-0 relative overflow-hidden glass p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border-white/5 reveal-up hover:border-emerald-500/30 transition-all duration-700 delay-300">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-8">
                             <i class="fa-solid fa-tractor text-4xl text-emerald-400"></i>
@@ -829,7 +856,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <!-- Stage 5: INTELIGÊNCIA -->
         <section id="intelligence" class="journey-section relative">
@@ -899,7 +927,7 @@
 
             <!-- Confidential File Download / CV -->
             <div
-                class="glass p-12 rounded-[3.5rem] border-cyan-400/20 text-center space-y-8 relative overflow-hidden group">
+                class="glass p-6 sm:p-12 rounded-[2rem] sm:rounded-[3.5rem] border-cyan-400/20 text-center space-y-8 relative overflow-hidden group">
                 <div
                     class="absolute inset-0 bg-cyan-500/5 -translate-y-full group-hover:translate-y-0 transition-transform duration-1000">
                 </div>
@@ -1159,9 +1187,10 @@
         // Horizontal Scroll for Projects
         let connectionSection = document.querySelector("#connection");
         let projectContainer = document.querySelector(".projects-container");
-        if (projectContainer && connectionSection) {
-            let mm = gsap.matchMedia();
-            mm.add("(min-width: 1024px)", () => {
+        
+        let mm = gsap.matchMedia();
+        mm.add("(min-width: 1024px)", () => {
+            if (projectContainer && connectionSection) {
                 gsap.to(projectContainer, {
                     x: () => -(projectContainer.scrollWidth - window.innerWidth + 48) + "px",
                     ease: "none",
@@ -1169,13 +1198,14 @@
                         trigger: connectionSection,
                         start: "top top",
                         pin: true,
-                        scrub: 1,
+                        scrub: 0.5,
+                        anticipatePin: 1,
                         invalidateOnRefresh: true,
-                        end: () => "+=" + projectContainer.scrollWidth
+                        end: () => "+=" + (projectContainer.scrollWidth - window.innerWidth + 100)
                     }
                 });
-            });
-        }
+            }
+        });
 
         // 3D Tilt Effect for Project Cards
         document.querySelectorAll('.project-card').forEach(card => {
